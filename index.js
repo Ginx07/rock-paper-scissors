@@ -14,7 +14,6 @@ CREATE playGame with playRound inside
 function getComputerChoice(max){
     //creating random number to use as selector in choice matching text
     return Math.floor(Math.random() * max);
-
 }
 
 //calling the random function to create a random digit from 0-2
@@ -32,8 +31,18 @@ switch(computerChoice){
     case 1:
         choiceName = "paper";
         break;
-    case 3:
+    case 2:
         choiceName = "scissors";
         break;
 }
-console.log(choiceName);
+console.log("Computer chose: ", choiceName);
+
+function getHumanChoice(){
+    let userChoice = prompt("Enter you choice rock, paper, or scissors?", "Choose wisely");
+    console.log("You chose: ", userChoice);
+
+    return userChoice;
+}
+
+let playerChoice = getHumanChoice();
+

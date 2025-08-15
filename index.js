@@ -38,11 +38,77 @@ switch(computerChoice){
 console.log("Computer chose: ", choiceName);
 
 function getHumanChoice(){
-    let userChoice = prompt("Enter you choice rock, paper, or scissors?", "Choose wisely");
+    let userChoice = prompt("Enter you choice rock, paper, or scissors?", "rock");
     console.log("You chose: ", userChoice);
 
     return userChoice;
 }
 
 let playerChoice = getHumanChoice();
+console.log(playerChoice);
 
+//Function to determine the winner for the round
+function playRound(playerChoice, choiceName) {
+
+    //making user input lowercase for comparison
+    let rock = "rock";
+    let paper = "paper";
+    let scissors = "scissors";
+
+switch(computerChoice){
+    case 0:
+        choiceName = "rock";
+        break;
+    case 1:
+        choiceName = "paper";
+        break;
+    case 2:
+        choiceName = "scissors";
+        break;
+}
+
+//Determining the winner vs rock
+    //Compares the players choice to lowercase so aslong as the spelling is correct, it matches
+    if(playerChoice.toLowerCase() === "rock" && choiceName === rock) {
+       console.log("This round is a Tie");
+        }
+
+        else if(playerChoice.toLowerCase() === "rock" && choiceName === paper) {
+            console.log("Paper covers rock, you lost this round...");
+        }
+
+        else if(playerChoice.toLowerCase() === "rock" && choiceName === scissors) {
+            console.log("Rock smashes scissors, you won this round!");
+        }
+
+//Determining the winner vs paper
+        else if(playerChoice.toLowerCase() === "paper" && choiceName === paper) {
+            console.log("This round is a Tie");
+        }
+
+        else if(playerChoice.toLowerCase() === "paper" && choiceName === rock) {
+            console.log("Paper covers rock, you won this round...");
+        }
+
+        else if(playerChoice.toLowerCase() === "paper" && choiceName === scissors) {
+            console.log("Rock smashes scissors, you won this round!");
+        }
+
+//Determining the winner vs scissors
+        else if(playerChoice.toLowerCase() === "scissors" && choiceName === scissors) {
+            console.log("This round is a Tie");
+        }
+
+        else if(playerChoice.toLowerCase() === "scissors" && choiceName === rock) {
+            console.log("Scissors slices through paper, you won this round!");
+        }
+
+        else if(playerChoice.toLowerCase() === "scissors" && choiceName === paper) {
+            console.log("Rock smashes scissors, you lost this round...");
+        }
+    }
+
+const humanScore = 0;
+const computerScore = 0;  
+
+playRound(playerChoice, choiceName);

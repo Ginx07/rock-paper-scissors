@@ -34,7 +34,7 @@ function playRound(humanChoice, computerInt) {
     const names = ["rock", "paper", "scissors"]
     const computerChoice = names[computerInt]
 
-    console.log('You chose: ${humanChoice} and computer chose ${computerChoice}')
+    console.log(`You chose: ${humanChoice} vs. computer: ${computerChoice}`)
 
     if(humanChoice === computerChoice) {
         console.log("This round is a tie.")
@@ -57,7 +57,7 @@ function playRound(humanChoice, computerInt) {
 }
 
 for (let round = 1; round <= 5; round++) {
-    console.log("round ${round}")
+    console.log(`round ${round}`)
 
     const human = getHumanChoice()
     const pc = getComputerChoice()
@@ -66,10 +66,11 @@ for (let round = 1; round <= 5; round++) {
     if (result === 1) humanScore++
     else if (result === 2) computerScore++
 
-    console.log('You ${humanScore}    Computer: ${computerScore}')
+    console.log(`You ${humanScore}    Computer: ${computerScore}`)
 }
 
-console.log('Final Score - You: ${humanScore}, Computer Score ${computerScore}')
+console.log(`Final Score|       You: ${humanScore}`)
+console.log(`              Computer: ${computerScore}`)
 
 if (humanScore > computerScore) {
     console.log("You won the game!")

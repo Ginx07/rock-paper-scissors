@@ -12,72 +12,52 @@ CREATE playGame with playRound inside
 */
 
 
-let humanScore = 0;
+let playerScore = 0;
 let computerScore = 0;
+let computerChoice = "";
 
 function getComputerChoice() {
     //creating random number to use as selector in choice matching text
     return Math.floor(Math.random() * 3);
 }
 
-function getHumanChoice() {
-    let input = prompt("Enter (r) rock, (s) scissors, (p) paper")
-
-input = input.trim().toLowerCase()
-
-if (input === "r")  {return "rock"}
-if (input === "s")  {return"scissors"}
-if (input === "p")  {return "paper"}
-}
-
 function playRound(humanChoice, computerInt) {
     const names = ["rock", "paper", "scissors"]
-    const computerChoice = names[computerInt]
+    const computerChoice = names[getComputerChoice()]
 
-    console.log(`You chose: ${humanChoice} vs. computer: ${computerChoice}`)
+    let result = "";
 
-    if(humanChoice === computerChoice) {
-        console.log("This round is a tie.")
-        return 0
+    if (humanChoice === computerChoice) {
+        result = "This round is a tie."
     }
-
-    if (
+    else if (
         humanChoice === "rock" && computerChoice === "scissors" ||
         humanChoice === "paper" && computerChoice === "rock" ||
         humanChoice === "scissors" && computerChoice === "paper"
-        ) {
-            console.log("you won this round!")
-            return 1
-        }
-    else
-        {
-            console.log("you lost this round")
-            return 2
-        }
+    ) {
+        result = "You win this round!";
+        playerScore++;
+    }
+    else {
+        result = "Computer wins this round!";
+        computerScore++;
+    }
+
+    let resultsDiv = document.querySelector("#results")
+    resultsDiv.textContent = `You chose ${humanChoice}, computer chose ${computerChoice}.
+                            ${result} Score: You ${playerScore} - Computer ${computerScore}`;
 }
 
-for (let round = 1; round <= 5; round++) {
-    console.log(`round ${round}`)
+//linking buttons with js
+let rockBtn = document.querySelector("#rock");
+let paperBtn = document.querySelector("#paper");
+let scissorsBtn = document.querySelector("#scissors");
 
-    const human = getHumanChoice()
-    const pc = getComputerChoice()
-    const result = playRound(human, pc)
+rockBtn.addEventListener("click", () => playRound("rock"));
+paperBtn.addEventListener("click", () => playRound("paper"));
+scissorsBtn.addEventListener("click", () => playRound("scissors"));
 
-    if (result === 1) humanScore++
-    else if (result === 2) computerScore++
 
-    console.log(`You ${humanScore}    Computer: ${computerScore}`)
-}
+//adding listeners
+//match playRound
 
-console.log(`Final Score|       You: ${humanScore}`)
-console.log(`              Computer: ${computerScore}`)
-
-if (humanScore > computerScore) {
-    console.log("You won the game!")
-}
-else if (computerScore > humanScore) {
-    console.log("You lost the game")
-}
-else {
-    console.log("It's a Tie")
-}

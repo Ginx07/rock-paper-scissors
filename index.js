@@ -46,14 +46,13 @@ function playRound(humanChoice) {
     if (playerScore === 5 || computerScore === 5) {
         //end game
         //reset score
-        document.querySelector("#score").textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 
-        //stopping buttons function
+        //stopping button function after the game ends
         rockBtn.disabled = true;
         paperBtn.disabled = true;
         scissorsBtn.disabled = true;
 
-        //setting all values to 0
+        //setting all values to 0 after reset
         let resetBtn = document.querySelector("#play-again");
         resetBtn.style.display = "inline";
         resetBtn.addEventListener("click", () => {
@@ -63,6 +62,7 @@ function playRound(humanChoice) {
             document.querySelector("#score").textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
             resetBtn.style.display = "none";
         
+            //re-enabling the buttons after a new game starts
             rockBtn.disabled = false;
             paperBtn.disabled = false;
             scissorsBtn.disabled = false;
@@ -73,8 +73,9 @@ function playRound(humanChoice) {
 
     //displaying results on page
     let resultsDiv = document.querySelector("#results")
-    resultsDiv.textContent = `You chose ${humanChoice}, computer chose ${computerChoice}.
-                            ${result} Score: You ${playerScore} - Computer ${computerScore}`;
+    resultsDiv.textContent = `You chose ${humanChoice}, computer chose ${computerChoice}.`;
+
+    document.querySelector("#score").textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 }
 
 //linking buttons with js
